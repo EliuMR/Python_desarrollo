@@ -1,0 +1,43 @@
+
+<!---Heredamos toda la estructura del layout.html --->
+{%extends 'layout.html' %}
+
+
+{%block title%}
+  Formulario en django
+{%endblock%}
+
+{%block contenido%}
+  <h1 class="title">
+    Formulario en django
+  </h1>
+  <!---Formulario para crear un nuevo articulo --->
+  <div class="box">
+    <!--- Get sirve para enviar los datos por la url, no es recomendable usarlo ---> 
+      <!--- <form action= " % url 'save_article' %}" method="GET"> --->
+
+    <!--- Post sirve para enviar los datos por la url, es recomendable usarlo --->
+    <form action="{% url 'save_article' %}" method="POST">
+      {% csrf_token %} <!--- Token de seguridad, es necesario para enviar los datos --->
+  <label for="title">Titulo</label>
+  <input type="text" id="title" name="title" placeholder="Titulo del articulo" required>
+  
+  <br><br>
+  
+  <label for="content">Contenido</label>
+  <textarea id="content" name="content" placeholder="Contenido del articulo"></textarea>
+  
+  <br><br>
+  
+  <label for="public">¿Publicado?</label>
+  <select id="public" name="public">
+    <option value="1">Si</option>
+    <option value="2">No</option>
+  </select>
+  
+  <br><br>
+  
+  <input type="submit" value="Guardar"/>
+  </form>
+  </div>
+{%endblock%}  

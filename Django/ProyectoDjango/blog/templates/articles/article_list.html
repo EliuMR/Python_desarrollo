@@ -1,0 +1,36 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block contenido %}
+<h1 class="title">{{title}}</h1>
+{% for article in articles %}
+    <article class="article-item">
+      {% if article.image %}
+        <img src="{{article.image.url}}" alt="{{article.title}}">
+        {% endif %}
+
+      <div class= "data">
+        <h1>
+          <a href="{% url 'detail' article.id %}">{{article.title}}</a>
+        <span class="date">
+          Fecha: {{article.created_at}}
+          <br>
+          Usuario: {{article.user}}
+          <br>
+          Categorías: 
+          {% for category in article.categories.all %}
+            {{category.name}}
+            {% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </span>
+        <p>
+        {{article.content|safe}}
+        </p>
+      </div>
+    </article>
+{% endfor %}
+
+{% include 'articles/pagination.html' %}
+
+{% endblock %}

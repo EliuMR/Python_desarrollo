@@ -1,0 +1,30 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block title_pag %}
+Página de coche
+{% endblock %}
+{% block contenido %}
+
+  <h1> Página de coche </h1>
+  
+  <ul>
+    {% for dato in datos %}
+      <li> <h3> {{dato.4}} </h3> 
+        <p> Marca: {{dato.1}} </p>
+        <p> Precio: {{dato.2}} </p>
+        <p> Ciudad: {{dato.3}} </p>
+        
+        <!--- Editar --->
+        <p> <a href="" class="btn btn-primary"> Editar </a> </p>
+        <!--- Eliminar --->
+        <p> <a href="" class="btn btn-danger"> Eliminar </a> </p>
+      </li>
+      
+    {% endfor %}
+
+{% endblock %}

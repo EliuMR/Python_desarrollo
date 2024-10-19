@@ -1,0 +1,39 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block title_pag %}
+Listado de coches
+{{super()}} <!--- Esto es para que se herede el contenido de la plantilla base --->
+{% endblock %}
+{% block contenido %}
+
+  <h1> Listado </h1>
+  
+  {%for mensaje in get_flashed_messages() %}
+    <div class="alert alert-info">
+      {{mensaje}}
+    </div>
+  {% endfor %}
+
+  <ul>
+    {% for coche in coches %}
+      <li>
+        <h3> <a href="{{url_for('coche', id=coche.0)}}">{{coche.4}} </a> </h3>
+        <p> Marca: {{coche.1}} </p>
+        <p> Precio: {{coche.2}} </p>
+        <p> Ciudad: {{coche.3}} </p>
+
+        <!--- Editar --->
+        <p> <a href="{{url_for('editar', id=coche.0)}}" class="btn btn-primary"> Editar </a> </p>
+        <!--- Eliminar --->
+        <p> <a href="{{url_for('eliminar', id=coche.0)}}" class="btn btn-danger"> Eliminar </a> </p>
+      </li>
+
+    {% endfor %}
+  </ul>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<!---Heredamos toda la estructura del layout.html --->
+{%extends 'layout.html' %}
+
+{%block title%}
+  Página extra
+{%endblock%}
+
+{%block contenido%}
+{{block.super}} <!---Si queremos también heredar el contenido de la layout y no sólo sutituirlo --->
+  <h1 class="title"> Otra pagina </h1>
+  <!--- Filtros: Función dentro de las tempates --->
+  <p>Filtro que quita elementos: {{" Con más contenido ñ"|cut:"ñ" }}</p>
+  <p>Filtro de texto con variable por defecto {{ texto|default:"No hay nada" }}</p> <!--- Filtro de texto vacío o dar un valor por defecto ---->
+  <p>Filtro del primer elemento de la lista: {{ lista|first}}</p> <!--filtro de un elemento de la lista"--->
+  <p>Filtro para todos lo elementod de la lista formateados: {{lista|join:', '}} </p>
+  <p>Filtro para texto en mayúsculas {{"Texto 1"|upper}} </p>
+  <p>Filtro elemento de una lista {{lista|random}}</p>
+  <p> https://django-filter.readthedocs.io/en/stable/</p>
+  
+ <!--- Cargamos los filtros que se encuentran en templatetags ---> 
+    {% load filters %}
+
+    <p>{{"Eliu"|Filtro_Custom|safe}} </p> <!-- Es necesario el filtro safe para que el texto de lea como codigo html--->
+{%endblock%}  
+

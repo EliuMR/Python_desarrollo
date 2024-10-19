@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang=es>
+  <head>
+    <meta charset = "utf-8"/>
+            <!---Titulo de cada página --->
+    <title>
+      {%block title%}
+
+      {%endblock %}
+  
+    </title>
+    <!--- Cargamos los staticos para personalizar el html--->
+    {% load static %}
+    <!--- Vamos a llamar nuestro archivo css de stilos--->
+    <link rel="stylesheet" type="text/css" href = "{% static 'css/styles.css'%}"/> 
+
+  </head>
+  
+  <body>
+
+    <!--- Cabecera de la página --->
+  <header>
+    <div id="logotipo">
+      <img src= "{% static 'images/logo.png'%}"/>
+      <h1> Proyecto</h1>
+    </div>
+  </header>
+  
+  <!--- Barra de navegación --->
+  <nav>
+    <ul>
+      <li><a href = "{% url 'inicio' %}">Inicio</a></li>
+      
+    {% if user.email %} 
+      
+      <!--- Este es un ciclo for que nos permite recorrer las páginas que tenemos en la base de datos --->
+      
+      {% for page in pages %}
+        <li> 
+          <!---Agregamos el link para que nos lleve a la página que queremos--->
+          <!--- El formato de la url es el siguiente: url 'nombre de la url' variable --->
+          <a href = "{% url 'page' page.2 %}">{{page.1}}</a>
+        </li>
+      {% endfor %}
+
+      <li> 
+        <a href = "{% url 'article_list' %}">Categorias</a>
+        <ul>
+            {% for category in categories %}   
+            <li>
+              <a href = "{% url 'category' category.0%}">{{category.1}}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+      
+      <li><a href = "{% url 'logout' %}">Logout</a></li>
+
+    {% else %}
+      <li><a href = "{% url 'registro' %}">Registro</a></li>
+    
+      <li><a href = "{% url 'login' %}">Login</a></li>
+    {% endif %}
+
+    </ul>
+  </nav>
+
+   
+  <div class = "barra">
+
+    <span class = "esquina-izquierda"></span> <!--Etiqueta vacía -->
+    <span class = "barra-rellena"></span> <!--Etiqueta vacía -->
+    <span class = "esquina-derecha"></span> <!--Etiqueta vacía -->
+ 
+  </div>
+
+
+    <div id= "Contenido" >
+      <div id="box"> <!---Agregamos este para poder asignar estilos a una caja dentro del contenido, para el html no es necesario--->
+          {%block contenido%}
+          <!---Puede ir codigo que viene de templates --->
+            <p>Contenido por defecto</p> <!---Este contenido se muestra cuando no se sustiye el bloque en herencia--->
+        {%endblock%}
+      </div>
+    </div>
+    
+    <hr/>
+
+    <footer>
+      Pie de pagina mio &copy - {%now "Y-m-d"%} <!---Dar fecha --->
+    </footer>
+  </body>
+

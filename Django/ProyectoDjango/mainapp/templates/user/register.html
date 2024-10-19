@@ -1,0 +1,29 @@
+﻿<!--- heredamos de la plantilla base -->
+{% extends 'layouts/layout.html' %}
+
+<!--- Definimos el bloque title -->
+{%block title%}{{title}}{%endblock%}
+
+{%block contenido%}
+  <h1> {{title}} </h1>
+  {{register_form.errors}}
+
+  <p>{{message}}</p>
+  
+  <form method='post' action=''>
+    {% csrf_token %}
+    {%comment%}
+    {{register_form.as_p}}
+    {%endcomment%}
+
+    {% for field in register_form %}
+      <p>
+      {{field.label}}
+        {{field}}
+      </p>
+    {% endfor %}
+
+    <input type='submit' value='Registrarse'>
+  </form>
+
+{%endblock%}

@@ -1,0 +1,51 @@
+<!---Con lo siguiente heredamos el contenido de la plantilla layout --->
+{%extends 'layout.html' %} 
+
+<!--- Para agregar el contenido a nuestra pagina debomos hacer referencia los bloques id de la template layout --->
+
+
+ <!-- Variable con el titulo desde las vistas de python-->
+{%block title %}
+    {{titulo}}
+{%endblock%}
+
+{%comment 'Titulo de comentario'%}
+  Este comentario ni si quiera se renderiza, es un comentarioo Django
+{%endcomment%}
+
+{%block contenido %}
+
+  <!--- Variables que se mostrarán, con doble llave--->  
+  <h1 class="title"> {{titulo}} </h1>
+  <p>{{variable}}</p>
+
+
+  <!--- Condicionales --->
+  {%if nombre%}
+    <p>{{nombre}}</p>
+  {%else%}
+    <p> El nombre no existe </p>
+  {%endif%}
+
+  <!---Bucles--->
+  <ul>
+  {%for i in lista %}
+  <li>{{forloop.counter}}. {{i}} </li>
+    {%empty%} <!--- Se comporta como un if para ver si la lista está vacía--->
+      <p> La lista esta vacía </p>
+  {%endfor %}
+  </ul>
+
+<ul>
+  {%for i in years%}
+    {% if i|divisibleby:2 %}
+      <li> {{i}} </li>
+    {%endif%}
+  {%endfor%}
+</ul>
+
+{%include 'fechaActual.html'%} <!--- Estamos importando otros archivos html, esto para tener una mejor organicación--->
+    
+<p> Bienvenido a la pagina de inicio :</p>
+<ul>
+{%endblock%} 

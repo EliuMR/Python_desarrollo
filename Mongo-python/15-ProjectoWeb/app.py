@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 # conexion
 CONEXION_LOCAL="mongodb://admin:2603@localhost"
-CONEXION_ATLAS = "mongodb+srv://admin:lepanto@cluster0.1jkwhhs.mongodb.net/?retryWrites=true&w=majority"
+CONEXION_ATLAS = "mongodb+srv://<usuario>:<contraseña>@<cluster-url>/<nombre_base_datos>?retryWrites=true&w=majority"
  
 # Usamos MongoClient para conectarnos
 cliente = MongoClient(CONEXION_LOCAL)

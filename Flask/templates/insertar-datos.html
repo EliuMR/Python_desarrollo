@@ -1,0 +1,36 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block title_pag %}
+Página de inserción de datos
+{{super()}} <!--- Esto es para que se herede el contenido de la plantilla base --->
+{% endblock %}
+{% block contenido %}
+
+<h1>Insertar datos</h1>
+<form action="" method= "POST">
+  <label for= "Modelo">Modelo:</label>
+  <br>
+    <input type="text" name="modelo" id="modelo" required>
+    <br>
+    <label for= "Marca">Marca:</label> 
+    <br>
+    <input type="text" name="marca" id="marca" required>
+    <br>
+    <label for= "Precio">Precio:</label>
+    <br>
+    <input type="number" name="precio" id="precio" required>
+    <br>
+    <label for = "Ciudad">Ciudad:</label>
+    <br>
+    <input type="text" name="ciudad" id="ciudad" required>
+    <br>
+    <input type="submit" value="Enviar">
+
+  </form>
+
+{% endblock %}

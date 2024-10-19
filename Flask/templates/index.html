@@ -1,0 +1,39 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block title_pag %}
+Página de inicio
+{{super()}} <!--- Esto es para que se herede el contenido de la plantilla base --->
+{% endblock %}
+{% block contenido %}
+
+  <h1> Página de inicio </h1>
+  <p>Esta es la página de inicio de la aplicación web.</p>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <br>
+
+
+  {{variable}} <br>
+  {#  Comentario 0
+      Comentario 1
+      Comentario 2
+  #}
+
+ {#vamos a incluir unos archivos que ejecutan ciertas acciones#}
+  {% include "includes/edad.html" %}
+  {% include "includes/listado.html" %}
+
+{% endblock %}

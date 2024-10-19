@@ -1,0 +1,34 @@
+
+<!---Heredamos toda la estructura del layout.html --->
+{%extends 'layout.html' %}
+
+
+{%block title%}
+  Formulario en django
+{%endblock%}
+
+{%block contenido%}
+  <h1 class="title">
+    Formulario utilizando clases en django
+  </h1>
+  <!---Formulario para crear un nuevo articulo --->
+    <!--- Get sirve para enviar los datos por la url, no es recomendable usarlo ---> 
+      <!--- <form action= " % url 'save_article' %}" method="GET"> --->
+
+  {% if form.errors %}
+    <div class="rojo">
+      <strong>Error:</strong> El formulario tiene errores
+    </div>
+  {% endif %}
+
+    <div class="box">
+    <!--- Post sirve para enviar los datos por la url, es recomendable usarlo --->
+    <form action="" method="POST">
+      {% csrf_token %} <!--- Token de seguridad, es necesario para enviar los datos --->
+      
+      <!--- mostrar el formulario --->
+      {{form.as_p}}
+      <input type="submit" value="Guardar"/>
+    </form>
+  </div>
+{%endblock%}  

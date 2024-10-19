@@ -1,0 +1,31 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block title_pag %}
+Editar coche {{coche.0.4}}
+{{super()}} <!--- Esto es para que se herede el contenido de la plantilla base --->
+{% endblock %}
+{% block contenido %}
+
+<h1> Editar coche {{coche.0.1}} </h1>
+
+<form action="" method= "POST">
+  <label for="modelo">Modelo</label>
+  <input type="text" name="modelo" id="modelo" class="form-control" value="{{coche.0.4}}">
+  <hr>
+  <label for="marca">Marca</label>
+  <input type="text" name="marca" id="marca" class="form-control" value="{{coche.0.1}}">
+  <hr>
+  <label for="precio">Precio</label>
+  <input type="text" name="precio" id="precio" class="form-control" value="{{coche.0.2}}">
+  <hr>
+  <label for="ciudad">Ciudad</label>
+  <input type="text" name="ciudad" id="ciudad" class="form-control" value="{{coche.0.3}}">
+  <hr>
+  <input type="submit" value="Editar" class="btn btn-primary">
+</form> 
+{% endblock %}

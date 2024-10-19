@@ -1,0 +1,19 @@
+<!--- Vamos a heredar de la plantilla base --->
+{% extends "layout.html" %}
+
+{% block title %}
+Saludo
+{% endblock %}
+
+{% block title_pag %}
+Página de saludo
+{% endblock %}
+
+{% block contenido %}
+
+  <h1>Hola {{nombre|safe}}</h1> 
+  <p>¿Cómo estas?</p> 
+
+{% endblock %}
+
+

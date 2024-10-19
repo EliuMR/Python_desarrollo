@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang=es>
+  <head>
+    <meta charset = "utf-8"/>
+            <!---Titulo de cada página --->
+    <title>
+      {%block title%}
+
+      {%endblock %}
+  
+    </title>
+    <!--- Cargamos los staticos para personalizar el html--->
+    {% load static %}
+    <!--- Vamos a llamar nuestro archivo css de stilos--->
+    <link rel="stylesheet" type="text/css" href = "{% static 'css/styles.css'%}"/> 
+
+  </head>
+  
+  <body>
+
+    <!--- Cabecera de la página --->
+  <header>
+    <div id="logotipo">
+      <img src= "{% static 'images/logo.png'%}"/>
+      <h1> Titulo </h1>
+    </div>
+  </header>
+  
+  <nav> <!-- Barra de navegación-->
+    <ul>
+          <!--- Podemos pasar con href las url ya sea con el nombre que le dimos en el archivo urls.py mediante
+            { url } o mediante el nombre direccion que le dimo "/pagina"
+            --->
+      <li> <a href =    {%url 'Index'%}       > Inicio   </a> </li>
+      <li> <a href=     "/pagina"       > Pagina   </a> </li>
+      <li> <a href=     "/contacto_po"  > Contacto </a> </li>
+      <li> <a href=     "/select_all_articles"  > Articulos </a> </li>
+      <li> <a href=     "/create_article"  > Crear Articulo </a> </li>
+      <li> <a href=     "/create_article_form"  > Crear Articulo Formulario de django </a> </li>
+    </ul>
+  </nav>
+
+    
+  <div class = "barra">
+
+    <span class = "esquina-izquierda"></span> <!--Etiqueta vacía -->
+    <span class = "barra-rellena"></span> <!--Etiqueta vacía -->
+    <span class = "esquina-derecha"></span> <!--Etiqueta vacía -->
+ 
+  </div>
+
+
+    <div id= "Contenido" >
+      <div id="box"> <!---Agregamos este para poder asignar estilos a una caja dentro del contenido, para el html no es necesario--->
+          {%block contenido%}
+          <!---Puede ir codigo que viene de templates --->
+            <p>Contenido por defecto</p> <!---Este contenido se muestra cuando no se sustiye el bloque en herencia--->
+        {%endblock%}
+      </div>
+    </div>
+    
+    <hr/>
+
+    <footer>
+      Pie de pagina mio &copy - {%now "Y-m-d"%} <!---Dar fecha --->
+    </footer>
+  </body>

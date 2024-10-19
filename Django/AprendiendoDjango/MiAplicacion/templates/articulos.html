@@ -1,0 +1,46 @@
+
+<!---Heredamos toda la estructura del layout.html --->
+{%extends 'layout.html' %}
+
+{%block title%}
+  Lista de Articulos
+{%endblock%}
+
+{%block contenido%}
+  <h1>Lista de Articulos</h1>
+
+  {%if messages%} <!---Mostramos un mensaje si existe --->
+    {%for m in messages%} <!---Recorremos el array de mensajes --->
+      <div class="message"> <!---Estilo para el mensaje --->
+        {{m}} <!---Mostramos el mensaje --->
+      </div>
+    {%endfor%}
+  {%endif%}
+
+
+  <ul> <!---Lista de articulos --->
+    {%for articulo in articulos%} <!---Recorremos el array de articulos --->
+    <article class = "article-item" > <!---Estilo para el articulo --->
+      > <!---Elemento de la lista --->
+      {% if articulo.image %}
+      <div class = "image"> <!---Estilo para la imagen --->
+          <img src="{{ articulo.image.url }}"/>
+        </div>
+      {% endif %}
+
+      <div class = "data">
+      <h2>
+        {{articulo.id}}. {{articulo.title}} </h2>
+      
+        <span class="date">{{articulo.created_at}}</span> <!---Mostramos la fecha del articulo, el span es para darle estilo --->
+        <p>{{articulo.contet}}</p> <!---Mostramos el titulo y el contenido del articulo --->
+        
+        <a href= "{% url 'delete_article' id=articulo.id %}" class="boton-borrar">Borrar</a> <!---Enlace para borrar articulo --->
+      
+      </div> 
+    </article>
+
+    {%endfor%}
+  </ul>
+
+{%endblock%}  

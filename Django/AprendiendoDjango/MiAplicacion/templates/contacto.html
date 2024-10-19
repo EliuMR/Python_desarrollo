@@ -1,0 +1,13 @@
+<!---Heredamos toda la estructura del layout.html --->
+{%extends 'layout.html' %}
+
+{%block title%}
+  Página extra
+{%endblock%}
+
+{%block contenido%}
+{{block.super}} <!---Si queremos también heredar el contenido de la layout y no sólo sutituirlo --->
+  <h1 class="title"> Contacto </h1>
+  <!--- Filtros: Función dentro de las tempates --->
+  <p>eliu.moreno.ramirez@gmail.com</p>
+{%endblock%}

@@ -1,0 +1,28 @@
+<!--- heredamos de la plantilla base -->
+{% extends 'layouts/layout.html' %}
+
+<!--- Definimos el bloque title -->
+{%block title%}{{title}}{%endblock%}
+
+{%block contenido%}
+<h1> {{title}} </h1>
+<hr>
+<p>Esta es la página de inicio</p>
+  
+{% if messages%}
+  {% for message in messages %}
+  <div class="alert">
+    <p>{{message}}</p>
+  </div>
+  {% endfor %}
+{% endif %}
+
+{%if user.email%}
+  <p>Bienvenido {{user.email}}</p>
+  <p> {{user.first_name}}</p>
+
+{%else%}
+  <p>Bienvenido, por favor <a href="{% url 'login' %}">inicia sesión</a></p>
+{%endif%}
+
+{%endblock%}

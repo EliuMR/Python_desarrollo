@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang=es>
+  <head>
+    <meta charset = "utf-8"/>
+            <!---Titulo de cada página --->
+    <title>
+      {%block title%}
+
+      {%endblock %}
+  
+    </title>
+<!--- Aqui se carga el archivo de estilos -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  </head>
+  
+  <body>
+
+    <!--- Cabecera de la página --->
+
+  
+  <!--- Barra de navegación --->
+  <nav>
+    <ul>
+   
+        <li><a href="{{url_for('info')}}">Informacion</a></li>
+        <li><a href="{{url_for('acerca')}}">Acerca de</a></li>
+        <li><a href="{{url_for('saludo2')}}">Saludo</a></li>
+        <li><a href="{{url_for('insertar_datos')}}">Insertar datos</a></li>
+        <li><a href="{{url_for('lista_coches')}}">Lista de coches</a></li>
+
+    </ul>
+  </nav>
+
+   
+  <div class = "barra">
+
+    <span class = "esquina-izquierda"></span> <!--Etiqueta vacía -->
+    <span class = "barra-rellena"></span> <!--Etiqueta vacía -->
+    <span class = "esquina-derecha"></span> <!--Etiqueta vacía -->
+ 
+  </div>
+
+
+    <div id= "Contenido" >
+      <div id="box"> <!---Agregamos este para poder asignar estilos a una caja dentro del contenido, para el html no es necesario--->
+          {%block contenido%}
+          <!---Puede ir codigo que viene de templates --->
+            <p>Contenido por defecto</p> <!---Este contenido se muestra cuando no se sustiye el bloque en herencia--->
+        {%endblock%}
+      </div>
+    </div>
+    
+    <hr/>
+
+    <footer>
+      {# El &copy; es un caracter especial que se usa para mostrar el simbolo de copiright 
+      y el {{now}} es una variable que se pasa desde el archivo de python que se encarga de renderizar la plantilla
+      #}
+      Pie de pagina mio &copy; {{now.year}}.{{now.month}}.{{now.day}}
+    </footer>
+  </body>
+
